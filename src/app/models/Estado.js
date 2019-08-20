@@ -11,6 +11,8 @@ class Estado extends Model {
         nome: Sequelize.STRING,
       },
       {
+        tableName: 'estados',
+        freezeTableName: true,
         sequelize,
       }
     );

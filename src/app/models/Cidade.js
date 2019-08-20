@@ -11,6 +11,8 @@ class Cidade extends Model {
         nome: Sequelize.STRING,
       },
       {
+        tableName: 'cidades',
+        freezeTableName: true,
         sequelize,
       }
     );

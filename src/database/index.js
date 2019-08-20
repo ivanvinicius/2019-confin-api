@@ -3,10 +3,11 @@ import Sequelize from 'sequelize';
 import Estado from '../app/models/Estado';
 import Cidade from '../app/models/Cidade';
 import Pessoa from '../app/models/Pessoa';
+import Conta from '../app/models/Conta';
 
 import databaseConfig from '../config/database';
 
-const models = [Estado, Cidade, Pessoa];
+const models = [Estado, Cidade, Pessoa, Conta];
 
 class Database {
   constructor() {

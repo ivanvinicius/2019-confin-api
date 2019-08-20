@@ -13,6 +13,8 @@ class Pessoa extends Model {
         email: Sequelize.STRING,
       },
       {
+        tableName: 'pessoas',
+        freezeTableName: true,
         sequelize,
       }
     );
