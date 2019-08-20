@@ -2,10 +2,11 @@ import Sequelize from 'sequelize';
 
 import Estado from '../app/models/Estado';
 import Cidade from '../app/models/Cidade';
+import Pessoa from '../app/models/Pessoa';
 
 import databaseConfig from '../config/database';
 
-const models = [Estado, Cidade];
+const models = [Estado, Cidade, Pessoa];
 
 class Database {
   constructor() {

@@ -1,5 +1,5 @@
-import Cidade from '../models/Cidade';
 import Estado from '../models/Estado';
+import Cidade from '../models/Cidade';
 
 class CidadeController {
   async index(req, res) {
