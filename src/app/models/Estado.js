@@ -4,7 +4,10 @@ class Estado extends Model {
   static init(sequelize) {
     super.init(
       {
-        est_sigla: Sequelize.STRING,
+        est_sigla: {
+          type: Sequelize.STRING,
+          primaryKey: true,
+        },
         nome: Sequelize.STRING,
       },
       {

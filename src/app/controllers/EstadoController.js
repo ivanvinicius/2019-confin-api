@@ -6,7 +6,7 @@ class EstadoController {
       attributes: ['est_sigla', 'nome'],
     });
 
-    return res.json({ estados });
+    return res.json(estados);
   }
 
   // async store(req, res) {}

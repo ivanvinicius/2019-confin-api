@@ -4,7 +4,10 @@ class Cidade extends Model {
   static init(sequelize) {
     super.init(
       {
-        cid_codigo: Sequelize.INTEGER,
+        cid_codigo: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+        },
         nome: Sequelize.STRING,
       },
       {
@@ -13,6 +16,10 @@ class Cidade extends Model {
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Estado, { foreignKey: 'est_sigla', as: 'estado' });
   }
 }
 
