@@ -10,7 +10,7 @@ const routes = new Router();
 // inserção
 routes.post('/estados', EstadoController.store);
 routes.post('/cidades', CidadeController.store);
-// routes.post('/pessoas', PessoaController.store);
+routes.post('/pessoas', PessoaController.store);
 // routes.post('/contas', ContaController.store);
 
 // listagem
