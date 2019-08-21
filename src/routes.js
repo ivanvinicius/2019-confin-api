@@ -7,25 +7,19 @@ import ContaController from './app/controllers/ContaController';
 
 const routes = new Router();
 
-// atualização
-routes.put('/estados', EstadoController.update);
-// routes.put('/cidades', CidadeController.update);
-// routes.put('/pessoas', PessoaController.update);
-// routes.put('/contas', ContaController.update);
+routes.put('/estados/:est_sigla', EstadoController.update);
+// routes.put('/cidades/:cid_codigo', CidadeController.update);
+// routes.put('/pessoas/:pes_codigo', PessoaController.update);
+// routes.put('/contas/:cnt_numero', ContaController.update);
 
-// inserção
 routes.post('/estados', EstadoController.store);
 routes.post('/cidades', CidadeController.store);
 routes.post('/pessoas', PessoaController.store);
 routes.post('/contas', ContaController.store);
 
-// listagem
 routes.get('/estados', EstadoController.index);
 routes.get('/cidades', CidadeController.index);
 routes.get('/pessoas', PessoaController.index);
 routes.get('/contas', ContaController.index);
-
-// boas vindas
-routes.get('/hello', (req, res) => res.json({ message: 'Hello world!' }));
 
 export default routes;

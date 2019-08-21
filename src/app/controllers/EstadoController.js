@@ -46,9 +46,7 @@ class EstadoController {
   }
 
   // atualização
-  async update(req, res) {
-    return res.json();
-  }
+  // async update(req, res) {}
 }
 
 export default new EstadoController();

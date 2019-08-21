@@ -74,6 +74,7 @@ class PessoaController {
     return res.json({ success: `A pessoa ${nome} foi cadastrada` });
   }
 
+  // atualização
   // async update(req, res) {}
 }
 

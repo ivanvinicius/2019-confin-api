@@ -6,6 +6,7 @@ import Pessoa from '../models/Pessoa';
 import Conta from '../models/Conta';
 
 class ContaController {
+  // listagem
   async index(req, res) {
     const contas = await Conta.findAll({
       attributes: [
@@ -88,6 +89,7 @@ class ContaController {
     });
   }
 
+  // atualização
   // async update(req, res) {}
 }
 

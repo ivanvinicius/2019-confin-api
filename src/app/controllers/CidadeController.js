@@ -61,6 +61,7 @@ class CidadeController {
     return res.json({ success: `A cidade ${nome} foi cadastrada` });
   }
 
+  // atualização
   // async update(req, res) {}
 }
 
