@@ -7,6 +7,12 @@ import ContaController from './app/controllers/ContaController';
 
 const routes = new Router();
 
+// inserção
+routes.post('/estados', EstadoController.store);
+// routes.post('/cidades', CidadeController.store);
+// routes.post('/pessoas', PessoaController.store);
+// routes.post('/contas', ContaController.store);
+
 // listagem
 routes.get('/estados', EstadoController.index);
 routes.get('/cidades', CidadeController.index);

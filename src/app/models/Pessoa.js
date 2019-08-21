@@ -15,6 +15,8 @@ class Pessoa extends Model {
       {
         tableName: 'pessoas',
         freezeTableName: true,
+        timestamps: false,
+
         sequelize,
       }
     );

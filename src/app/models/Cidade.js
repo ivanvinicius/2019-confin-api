@@ -13,6 +13,8 @@ class Cidade extends Model {
       {
         tableName: 'cidades',
         freezeTableName: true,
+        timestamps: false,
+
         sequelize,
       }
     );

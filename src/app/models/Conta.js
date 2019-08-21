@@ -17,6 +17,8 @@ class Conta extends Model {
       {
         tableName: 'contas',
         freezeTableName: true,
+        timestamps: false,
+
         sequelize,
       }
     );
