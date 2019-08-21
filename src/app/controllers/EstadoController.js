@@ -46,7 +46,39 @@ class EstadoController {
   }
 
   // atualização
-  // async update(req, res) {}
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      est_sigla: Yup.string()
+        .min(2)
+        .max(2)
+        .required(),
+      nome: Yup.string()
+        .min(3)
+        .max(100)
+        .required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({
+        error: 'Os dados informados no formulário não estão corretos',
+      });
+    }
+
+    const { est_sigla, nome } = req.body;
+    const estado = await Estado.findByPk(est_sigla);
+
+    if (!estado) {
+      return res
+        .status(400)
+        .json({ error: `O estado ${est_sigla}: ${nome} não existe ` });
+    }
+
+    await estado.update(req.body);
+
+    return res.json({
+      success: `O estado ${est_sigla}: ${nome} foi atualizado`,
+    });
+  }
 
   //  deleção
   async delete(req, res) {

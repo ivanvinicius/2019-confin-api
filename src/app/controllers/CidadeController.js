@@ -62,7 +62,42 @@ class CidadeController {
   }
 
   // atualização
-  // async update(req, res) {}
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      cid_codigo: Yup.number()
+        .integer()
+        .required(),
+      nome: Yup.string()
+        .min(3)
+        .max(100)
+        .required(),
+      est_sigla: Yup.string()
+        .min(2)
+        .max(2)
+        .required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({
+        error: 'Os dados informados no formulário não estão corretos ',
+      });
+    }
+
+    const { cid_codigo, nome } = req.body;
+    const cidade = await Cidade.findByPk(cid_codigo);
+
+    if (!cidade) {
+      return res
+        .status(400)
+        .json({ error: `A cidade ${cid_codigo}: ${nome} não existe ` });
+    }
+
+    await cidade.update(req.body);
+
+    return res.json({
+      success: `A cidade ${cid_codigo}: ${nome} foi atualizada`,
+    });
+  }
 
   //  deleção
   async delete(req, res) {

@@ -90,7 +90,50 @@ class ContaController {
   }
 
   // atualização
-  // async update(req, res) {}
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      cnt_numero: Yup.number()
+        .integer()
+        .required(),
+      descricao: Yup.string()
+        .max(120)
+        .required(),
+      data: Yup.date().required(),
+      valor: Yup.number().required(),
+      tipo: Yup.string()
+        .min(1)
+        .max(1)
+        .required(),
+      situacao: Yup.string()
+        .min(1)
+        .max(1)
+        .required(),
+      pes_codigo: Yup.number()
+        .integer()
+        .required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({
+        error: 'Os dados informados no formulário não estão corretos ',
+      });
+    }
+
+    const { cnt_numero, descricao } = req.body;
+    const conta = await Conta.findByPk(cnt_numero);
+
+    if (!conta) {
+      return res
+        .status(400)
+        .json({ error: `A conta ${cnt_numero}: ${descricao} não existe ` });
+    }
+
+    await conta.update(req.body);
+
+    return res.json({
+      success: `A conta ${cnt_numero}: ${descricao} foi atualizada`,
+    });
+  }
 
   //  deleção
   async delete(req, res) {

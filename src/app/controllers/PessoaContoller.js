@@ -75,7 +75,47 @@ class PessoaController {
   }
 
   // atualização
-  // async update(req, res) {}
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      pes_codigo: Yup.number()
+        .integer()
+        .required(),
+      nome: Yup.string()
+        .max(100)
+        .required(),
+      idade: Yup.number()
+        .integer()
+        .required(),
+      email: Yup.string()
+        .email()
+        .max(120)
+        .required(),
+      cid_codigo: Yup.number()
+        .integer()
+        .required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({
+        error: `Os dados informados no formulário não estão corretos `,
+      });
+    }
+
+    const { pes_codigo, nome } = req.body;
+    const pessoa = await Pessoa.findByPk(pes_codigo);
+
+    if (!pessoa) {
+      return res
+        .status(400)
+        .json({ error: `A pessoa${pes_codigo}: ${nome} não existe ` });
+    }
+
+    await pessoa.update(req.body);
+
+    return res.json({
+      success: `A pessoa ${pes_codigo}: ${nome} foi atualizada`,
+    });
+  }
 
   //  deleção
   async delete(req, res) {

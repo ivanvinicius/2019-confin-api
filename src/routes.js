@@ -12,10 +12,10 @@ routes.delete('/cidades/:cid_codigo', CidadeController.delete);
 routes.delete('/pessoas/:pes_codigo', PessoaController.delete);
 routes.delete('/contas/:cnt_numero', ContaController.delete);
 
-// routes.put('/estados/:est_sigla', EstadoController.update);
-// routes.put('/cidades/:cid_codigo', CidadeController.update);
-// routes.put('/pessoas/:pes_codigo', PessoaController.update);
-// routes.put('/contas/:cnt_numero', ContaController.update);
+routes.put('/estados/', EstadoController.update);
+routes.put('/cidades/', CidadeController.update);
+routes.put('/pessoas/', PessoaController.update);
+routes.put('/contas/', ContaController.update);
 
 routes.post('/estados', EstadoController.store);
 routes.post('/cidades', CidadeController.store);
