@@ -32,7 +32,7 @@ class EstadoController {
     }
 
     const { est_sigla } = req.body;
-    const estadoExist = await Estado.findOne({ where: { est_sigla } });
+    const estadoExist = await Estado.findByPk(est_sigla);
 
     if (estadoExist) {
       return res
