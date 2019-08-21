@@ -24,7 +24,9 @@ class CidadeController {
   // cadastro
   async store(req, res) {
     const schema = Yup.object().shape({
-      cid_codigo: Yup.number().required(),
+      cid_codigo: Yup.number()
+        .integer()
+        .required(),
       nome: Yup.string()
         .min(3)
         .max(100)

@@ -32,16 +32,22 @@ class PessoaController {
   // cadastro
   async store(req, res) {
     const schema = Yup.object().shape({
-      pes_codigo: Yup.number().required(),
+      pes_codigo: Yup.number()
+        .integer()
+        .required(),
       nome: Yup.string()
         .max(100)
         .required(),
-      idade: Yup.number().required(),
+      idade: Yup.number()
+        .integer()
+        .required(),
       email: Yup.string()
         .email()
         .max(120)
         .required(),
-      cid_codigo: Yup.number().required(),
+      cid_codigo: Yup.number()
+        .integer()
+        .required(),
     });
 
     if (!(await schema.isValid(req.body))) {
