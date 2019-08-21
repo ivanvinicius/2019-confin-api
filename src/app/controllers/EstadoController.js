@@ -47,6 +47,29 @@ class EstadoController {
 
   // atualização
   // async update(req, res) {}
+
+  //  deleção
+  async delete(req, res) {
+    const estado = await Estado.findByPk(req.params.est_sigla);
+
+    if (!estado) {
+      return res
+        .status(400)
+        .json({ error: `O estado ${req.params.est_sigla} não existe` });
+    }
+
+    const { nome } = estado;
+
+    try {
+      await estado.destroy();
+    } catch (err) {
+      return res.status(401).json({ error: err.parent.detail });
+    }
+
+    return res.json({
+      success: `O estado ${req.params.est_sigla}: ${nome} foi apagado`,
+    });
+  }
 }
 
 export default new EstadoController();

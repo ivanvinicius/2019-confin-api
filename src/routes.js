@@ -7,7 +7,12 @@ import ContaController from './app/controllers/ContaController';
 
 const routes = new Router();
 
-routes.put('/estados/:est_sigla', EstadoController.update);
+routes.delete('/estados/:est_sigla', EstadoController.delete);
+routes.delete('/cidades/:cid_codigo', CidadeController.delete);
+routes.delete('/pessoas/:pes_codigo', PessoaController.delete);
+routes.delete('/contas/:cnt_numero', ContaController.delete);
+
+// routes.put('/estados/:est_sigla', EstadoController.update);
 // routes.put('/cidades/:cid_codigo', CidadeController.update);
 // routes.put('/pessoas/:pes_codigo', PessoaController.update);
 // routes.put('/contas/:cnt_numero', ContaController.update);

@@ -63,6 +63,29 @@ class CidadeController {
 
   // atualização
   // async update(req, res) {}
+
+  //  deleção
+  async delete(req, res) {
+    const cidade = await Cidade.findByPk(req.params.cid_codigo);
+
+    if (!cidade) {
+      return res
+        .status(400)
+        .json({ error: `A cidade ${req.params.cid_codigo} não existe` });
+    }
+
+    const { nome } = cidade;
+
+    try {
+      await cidade.destroy();
+    } catch (err) {
+      return res.status(401).json({ error: err.parent.detail });
+    }
+
+    return res.json({
+      success: `A cidade ${req.params.cid_codigo}: ${nome} foi apagada`,
+    });
+  }
 }
 
 export default new CidadeController();

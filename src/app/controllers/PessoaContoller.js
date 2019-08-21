@@ -76,6 +76,29 @@ class PessoaController {
 
   // atualização
   // async update(req, res) {}
+
+  //  deleção
+  async delete(req, res) {
+    const pessoa = await Pessoa.findByPk(req.params.pes_codigo);
+
+    if (!pessoa) {
+      return res
+        .status(400)
+        .json({ error: `A pessoa ${req.params.pes_codigo} não existe` });
+    }
+
+    const { nome } = pessoa;
+
+    try {
+      await pessoa.destroy();
+    } catch (err) {
+      return res.status(401).json({ error: err.parent.detail });
+    }
+
+    return res.json({
+      success: `A pessoa ${req.params.pes_codigo}: ${nome} foi apagada`,
+    });
+  }
 }
 
 export default new PessoaController();

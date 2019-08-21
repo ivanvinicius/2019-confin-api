@@ -91,6 +91,29 @@ class ContaController {
 
   // atualização
   // async update(req, res) {}
+
+  //  deleção
+  async delete(req, res) {
+    const conta = await Conta.findByPk(req.params.cnt_numero);
+
+    if (!conta) {
+      return res
+        .status(400)
+        .json({ error: `A conta ${req.params.cnt_numero} não existe` });
+    }
+
+    const { descricao } = conta;
+
+    try {
+      await conta.destroy();
+    } catch (err) {
+      return res.status(401).json({ error: err.parent.detail });
+    }
+
+    return res.json({
+      success: `A conta ${req.params.cnt_numero}: ${descricao} foi apagada`,
+    });
+  }
 }
 
 export default new ContaController();
