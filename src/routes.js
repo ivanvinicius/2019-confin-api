@@ -1,11 +1,20 @@
 import { Router } from 'express';
 
+import authMiddleware from './app/middlewares/auth';
+
 import EstadoController from './app/controllers/EstadoController';
 import CidadeController from './app/controllers/CidadeController';
 import PessoaController from './app/controllers/PessoaContoller';
 import ContaController from './app/controllers/ContaController';
+import LoginController from './app/controllers/LoginController';
+import SessaoController from './app/controllers/SessaoController';
 
 const routes = new Router();
+
+routes.post('/criarLogin', LoginController.store);
+routes.post('/sessao', SessaoController.store);
+
+routes.use(authMiddleware); // todas as rotas abaixo precisam de login
 
 routes.delete('/estados/:est_sigla', EstadoController.delete);
 routes.delete('/cidades/:cid_codigo', CidadeController.delete);
